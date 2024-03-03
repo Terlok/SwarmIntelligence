@@ -24,7 +24,7 @@ class Animation:
 
         x_min = x.ravel()[z.argmin()]
         y_min = y.ravel()[z.argmin()]
-
+    
         fig, ax = plt.subplots(figsize=(8,6))
         fig.set_tight_layout(True)
         img = ax.imshow(z, extent=[self.interval[0][0], self.interval[0][1], self.interval[1][0], self.interval[1][1]], origin='lower', cmap='viridis', alpha=0.5)
