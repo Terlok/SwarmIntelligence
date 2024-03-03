@@ -1,7 +1,7 @@
 import numpy as np
 
 class ABC:
-    def __init__(self, func, bounds, colony_size=30, max_iter=100, limit=100) -> None:
+    def __init__(self, func, bounds, colony_size=30, max_iter=200, limit=100) -> None:
         self.func = func
         self.bounds = bounds
         self.colony_size = colony_size
@@ -52,34 +52,13 @@ class ABC:
 
 
 
-from functions import *
-import matplotlib.pyplot as plt
+# from functions import *
 
-def scatter_plot(bounds, values):
-    #x = np.linspace(bounds[0][0], bounds[0][1], 100)
-    #y = np.linspace(bounds[1][0], bounds[1][1], 100)
-    # X, Y = np.meshgrid(x, y)
-    # Z = function(X, Y)
+# if __name__ == '__main__':
+#     abc2 = ABC(rosenbrock2, np.array([[-1.5, 1.5], [-1.5, 1.5]]), colony_size=30)
 
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    #ax.plot_surface(X, Y, Z, cmap='viridis')
-    ax.set_xlabel('x')
-    ax.set_ylabel('y')
-    ax.set_zlabel('z')
+#     best_solution, best_fitness = abc2.optimize()
+#     print(f'Best solution is: {best_solution}')
+#     print(f'Best fitness is: {best_fitness}')
+
     
-    ax.scatter([i[0] for i in values['pop']], [i[1] for i in values['pop']], values['fitness'], color='red')
-    plt.show()
-
-
-if __name__ == '__main__':
-    abc2 = ABC(rosenbrock2, np.array([[-1.5, 1.5], [-1.5, 1.5]]), colony_size=30)
-
-    best_solution, best_fitness = abc2.optimize()
-    print(f'Best solution is: {best_solution}')
-    print(f'Best fitness is: {best_fitness}')
-
-    #print(len( abc2.values['pop']))
-    scatter_plot(np.array([[-1.5, 1.5], [-1.5, 1.5]]), abc2.values)
-    #print(abc2.values['pop'][:10])
-    #print(abc2.values['fitness'][:10])

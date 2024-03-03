@@ -9,8 +9,7 @@ from matplotlib.animation import FuncAnimation
 path = Path(__file__).parent.resolve()
 
 def create_folders():
-    Path(f'{path}\FitnessTrend').mkdir(parents=True, exist_ok=True)
-    Path(f'{path}\Distances').mkdir(parents=True, exist_ok=True)
+    Path(f'{path}\Scatter plot').mkdir(parents=True, exist_ok=True)
     Path(f'{path}\Animation').mkdir(parents=True, exist_ok=True)
 
 class Animation:
@@ -49,12 +48,13 @@ class Animation:
         anim = FuncAnimation(fig, animate, frames=len(self.values['X']), interval=200, blit=False, repeat=False)
         anim.save(f'{path}\Animation\{self.filename}.gif', dpi=120, writer='pillow')
 
-def scatter_plot(values):
+def scatter_plot(function_name, values):
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
+    ax.set_title(function_name)
     ax.set_xlabel('x')
     ax.set_ylabel('y')
     ax.set_zlabel('z')
     
     ax.scatter([i[0] for i in values['pop']], [i[1] for i in values['pop']], values['fitness'], color='red')
-    plt.show()
+    plt.savefig(f'{path}\Scatter plot\{function_name}.png')

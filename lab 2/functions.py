@@ -8,8 +8,8 @@ def rosenbrock1(X):
     x = X[0]
     y = X[1]
     func_values = np.array((1-x)**2 + 100*(y-x**2)**2)
-    condition_1 = (np.array(x) - 1)**3 - np.array(y) + 1 >= 0
-    condition_2 = np.array(x) + np.array(y) - 2 >= 0
+    condition_1 = ( (np.array(x) - 1)**3 - np.array(y) + 1 >= 0 )
+    condition_2 = ( np.array(x) + np.array(y) - 2 >= 0 )
 
     func_values[np.logical_and(condition_1, condition_2)] = 10000
     return func_values
@@ -17,17 +17,29 @@ def rosenbrock1(X):
 def rosenbrock2(X):
     x = X[0]
     y = X[1]
-    condition = np.array(x)**2 + np.array(y)**2 >= 2
+    condition = ( np.array(x)**2 + np.array(y)**2 >= 2 )
     
     func_values = np.array((1-x)**2 + 100*(y-x**2)**2)
     func_values[condition] = 10000
     return func_values
 
-def matchishra_bird(x, y):
-    return np.exp((1-np.cos(x))**2)*np.sin(y) + np.exp((1-np.sin(y))**2)*np.cos(x) + (x-y)**2
+def mishras_bird(X):
+    x = X[0]
+    y = X[1]
+    condition = ( (np.array(x) + 5)**2 + (np.array(y) - 5)**2 >= 25 )
 
-def simionescu(x, y):
-    return 0.1*x*y
+    func_values = np.exp((1-np.cos(x))**2)*np.sin(y) + np.exp((1-np.sin(y))**2)*np.cos(x) + (x-y)**2
+    func_values[condition] = 10000
+    return func_values
+
+def simionescu(X):
+    x = X[0]
+    y = X[1]
+    condition = ( x**2 + y**2 >= (1 + 0.2*np.cos(8 * np.arctan(np.divide(x, y))))**2 )
+
+    func_values = 0.1*x*y
+    func_values[condition] = 10000
+    return func_values 
 
 def reducer_weight(X):
     pass

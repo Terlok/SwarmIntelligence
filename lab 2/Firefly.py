@@ -1,7 +1,7 @@
 import numpy as np
 
 class FireflyAlgorithm:
-    def __init__(self, function, colony_size, bounds, max_iter=100, beta0=1.0, gamma=1.0):
+    def __init__(self, function, colony_size, bounds, max_iter=200, beta0=1.0, gamma=1.0):
         self.function = function
         self.colony_size = colony_size
         self.bounds = bounds
@@ -43,24 +43,14 @@ class FireflyAlgorithm:
         
         return best_solution, best_fitness
 
-from functions import *
-import matplotlib.pyplot as plt
 
-def scatter_plot(values):
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    ax.set_xlabel('x')
-    ax.set_ylabel('y')
-    ax.set_zlabel('z')
-    
-    ax.scatter([i[0] for i in values['pop']], [i[1] for i in values['pop']], values['fitness'], color='red')
-    plt.show()
 
-if __name__ == '__main__':
-    firefly1 = FireflyAlgorithm(rosenbrock1, colony_size=20, bounds=[[-1.5, 1.5], [-0.5, 2.5]])
 
-    best_solution, best_fitness = firefly1.optimize()
-    print(f'Best solution is: {best_solution}')
-    print(f'Best fitness is: {best_fitness}')
+# from functions import *
+# if __name__ == '__main__':
+#     firefly1 = FireflyAlgorithm(rosenbrock1, colony_size=20, bounds=[[-1.5, 1.5], [-0.5, 2.5]])
 
-    scatter_plot(firefly1.values)    
+#     best_solution, best_fitness = firefly1.optimize()
+#     print(f'Best solution is: {best_solution}')
+#     print(f'Best fitness is: {best_fitness}')
+

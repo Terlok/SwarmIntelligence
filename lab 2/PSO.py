@@ -1,7 +1,7 @@
 import numpy as np
 
 class ParticleOptimization:
-    def __init__(self, particles:int=20, bounds:list= None, hyper_parameters:list=[0.1, 0.1, 0.8], function:str=None, max_iter:int=100) -> None:
+    def __init__(self, particles:int=20, bounds:list= None, hyper_parameters:list=[0.1, 0.1, 0.8], function:str=None, max_iter:int=200) -> None:
         self.size = particles
         self.bounds = bounds
         # First for particles. Second for population. Last for speed.
@@ -42,20 +42,20 @@ class ParticleOptimization:
     
 
 
-from functions import *
+# from functions import *
 
-if __name__ == '__main__':
-    pso2 = ParticleOptimization(
-                            particles=30,
-                            max_iter=200,
-                            bounds=[[-1.5, 1.5], [-1.5, 1.5]],
-                            function=rosenbrock2,
-                            )
+# if __name__ == '__main__':
+#     pso2 = ParticleOptimization(
+#                             particles=30,
+#                             max_iter=200,
+#                             bounds=[[-1.5, 1.5], [-1.5, 1.5]],
+#                             function=rosenbrock2,
+#                             )
 
-    best_solution, best_fitness = pso2.process_particles()
-    # anim = Animation('Rosenbrock1', pso2.bounds, Rosenbrock1, pso2.values)
-    # anim.animate()
+#     best_solution, best_fitness = pso2.process_particles()
+#     # anim = Animation('Rosenbrock1', pso2.bounds, Rosenbrock1, pso2.values)
+#     # anim.animate()
 
-    print(f'Best solution is: {best_solution}')
-    print(f'Best fitness is: {best_fitness}')
+#     print(f'Best solution is: {best_solution}')
+#     print(f'Best fitness is: {best_fitness}')
 
