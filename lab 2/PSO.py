@@ -1,5 +1,4 @@
 import numpy as np
-from functions import *
 
 class ParticleOptimization:
     def __init__(self, particles:int=20, bounds:list= None, hyper_parameters:list=[0.1, 0.1, 0.8], function:str=None, max_iter:int=100) -> None:
@@ -9,7 +8,7 @@ class ParticleOptimization:
         self.hyper_parameters = hyper_parameters
         self.function = function
         self.max_iter = max_iter
-        self.values = {'X':[], 'pbest': [], 'pbest_obj': []}
+        self.values = {'pop':[], 'fitness': []}
 
     def __create_vector__(self) -> list:
         points = []
@@ -36,43 +35,27 @@ class ParticleOptimization:
             pbest_obj = np.minimum(pbest_obj, obj)
             gbest = pbest[:, pbest_obj.argmin()]
             gbest_obj = pbest_obj.min()
-            self.values['X'].append(X)
-            self.values['pbest'].append(pbest)
-            self.values['pbest_obj'].append(pbest_obj)
-            
+            self.values['pop'].append(X)
+            self.values['fitness'].append(pbest_obj)
+
         return gbest, gbest_obj
-
-        
-
-from graphics import *
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-
-# if __name__ == '__main__':
-    # print(pso.values['X'])
-    # print(pso.values['X'][:-1])
-    # print(pso.values['pbest'])
-    # print(pso.values['pbest_obj'][0])
-
-    # x = np.linspace(-1.5, 1.5, 100)
-    # y = np.linspace(-1.5, 1.5, 100)
-    # X, Y = np.meshgrid(x, y)
-    # Z = rosenbrock1(X, Y)
-
-    # # Create a 3D plot of the Rastrigin function
-    # fig = plt.figure()
-    # ax = fig.add_subplot(111, projection='3d')
-    # #ax.plot_surface(X, Y, Z, cmap='viridis')
-    # ax.set_xlabel('x')
-    # ax.set_ylabel('y')
-    # ax.set_zlabel('z')
-
-    # # Plot the solution found by the PSO algorithm
     
-    
-    # ax.scatter([i[0] for i in pso.values['X']], [i[1] for i in pso.values['X']], pso.values['pbest_obj'], color='red')
-    # plt.show()
-    
-    # create_folders()
-    # anim = Animation('rosenbrock1', pso.interval, rosenbrock1, pso.values)
+
+
+from functions import *
+
+if __name__ == '__main__':
+    pso2 = ParticleOptimization(
+                            particles=30,
+                            max_iter=200,
+                            bounds=[[-1.5, 1.5], [-1.5, 1.5]],
+                            function=rosenbrock2,
+                            )
+
+    best_solution, best_fitness = pso2.process_particles()
+    # anim = Animation('Rosenbrock1', pso2.bounds, Rosenbrock1, pso2.values)
     # anim.animate()
+
+    print(f'Best solution is: {best_solution}')
+    print(f'Best fitness is: {best_fitness}')
+
