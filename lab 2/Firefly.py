@@ -42,15 +42,3 @@ class FireflyAlgorithm:
         best_fitness = intensities[best_index]
         
         return best_solution, best_fitness
-
-
-
-
-# from functions import *
-# if __name__ == '__main__':
-#     firefly1 = FireflyAlgorithm(rosenbrock1, colony_size=20, bounds=[[-1.5, 1.5], [-0.5, 2.5]])
-
-#     best_solution, best_fitness = firefly1.optimize()
-#     print(f'Best solution is: {best_solution}')
-#     print(f'Best fitness is: {best_fitness}')
-

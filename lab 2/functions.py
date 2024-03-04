@@ -1,8 +1,12 @@
 import numpy as np
 
 def rastrigin(X):
+    A = 10
     n = len(X)
-    return 10*n + sum([xi**2 - 10*np.cos(2*np.pi*xi) for xi in X])
+    result = 0
+    for xi in X:
+        result += xi**2 - A * np.cos(2 * np.pi * xi)
+    return A * n + result
     
 def rosenbrock1(X):
     x = np.array(X[0])

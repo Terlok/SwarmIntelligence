@@ -48,47 +48,4 @@ class ABC:
             if fitness[best_index] < self.best_fitness:
                 self.best_solution = colony[:, best_index]
                 self.best_fitness = fitness[best_index]
-        return self.best_solution, self.best_fitness    
-
-
-
-from functions import *
-from graphics import *
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-
-if __name__ == '__main__':
-    # abc2 = ABC(mishras_bird, np.array([[-10, 0], [-6.5, 0]]), colony_size=30)
-
-    # best_solution, best_fitness = abc2.optimize()
-    # print(f'Best solution is: {best_solution}')
-    # print(f'Best fitness is: {best_fitness}')
-
-    abc5 = ABC(simionescu, np.array([[-1.25, 1.25], [-1.25, 1.25]]), colony_size=30)
-
-    best_solution, best_fitness = abc5.optimize()
-    print(f'Best solution is: {best_solution}')
-    print(f'Best fitness is: {best_fitness}')
-
-
-    # abc2 = ABC(rosenbrock1, np.array([[-1.5, 1.5], [-0.5, 2.5]]), colony_size=30)
-
-    # best_solution, best_fitness = abc2.optimize()
-    # print(f'Best solution is: {best_solution}')
-    # print(f'Best fitness is: {best_fitness}')
-
-    x = np.linspace(-1.25, 1.25, 100)
-    y = np.linspace(-1.25, 1.25, 100)
-    X, Y = np.meshgrid(x, y)
-    Z = mishras_bird([X, Y])
-
-    # Create a 3D plot of the Rastrigin function
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    ax.plot_surface(X, Y, Z, cmap='viridis')
-    ax.set_xlabel('x')
-    ax.set_ylabel('y')
-    ax.set_zlabel('z')
-    plt.show()
-
-    
+        return self.best_solution, self.best_fitness        

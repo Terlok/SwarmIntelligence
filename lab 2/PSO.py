@@ -39,23 +39,3 @@ class ParticleOptimization:
             self.values['fitness'].append(pbest_obj)
 
         return gbest, gbest_obj
-    
-
-
-# from functions import *
-
-# if __name__ == '__main__':
-#     pso2 = ParticleOptimization(
-#                             particles=30,
-#                             max_iter=200,
-#                             bounds=[[-1.5, 1.5], [-1.5, 1.5]],
-#                             function=rosenbrock2,
-#                             )
-
-#     best_solution, best_fitness = pso2.process_particles()
-#     # anim = Animation('Rosenbrock1', pso2.bounds, Rosenbrock1, pso2.values)
-#     # anim.animate()
-
-#     print(f'Best solution is: {best_solution}')
-#     print(f'Best fitness is: {best_fitness}')
-
