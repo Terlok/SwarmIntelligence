@@ -10,6 +10,7 @@ path = Path(__file__).parent.resolve()
 
 def create_folders():
     Path(f'{path}\Scatter plot').mkdir(parents=True, exist_ok=True)
+    Path(f'{path}\Rastrigin').mkdir(parents=True, exist_ok=True)
     Path(f'{path}\Animation').mkdir(parents=True, exist_ok=True)
 
 class Animation:
@@ -41,7 +42,7 @@ class Animation:
             
             return ax, p_plot
 
-        anim = FuncAnimation(fig, animate, frames=range(0, 50), interval=200, blit=False, repeat=True)
+        anim = FuncAnimation(fig, animate, frames=range(0, len(self.values['pop']), int(len(self.values['pop'])/50)), interval=200, blit=False, repeat=True)
         anim.save(f'{path}\Animation\{self.filename}.gif', dpi=120, writer='pillow')
 
 def scatter_plot(function_name, values):
@@ -54,3 +55,25 @@ def scatter_plot(function_name, values):
     
     ax.scatter([i[0] for i in values['pop']], [i[1] for i in values['pop']], values['fitness'], color='red')
     plt.savefig(f'{path}\Scatter plot\{function_name}.png')
+
+def fitness_trend(filename:str, fit:list):
+    fitness = np.array(fit)
+    fitness = fitness.T
+    fig = plt.figure()
+    for i in range(len(fitness)):
+        plt.plot(fitness[i])
+    plt.xlabel('epoch')
+    plt.ylabel('fitness')
+    plt.title('Fitness of population')
+    plt.savefig(f'{path}\Rastrigin\{filename}_fit_trend_.png')
+    plt.close(fig)
+
+def distances(filename:str, best:list):
+    fig = plt.figure()
+    distance = np.diff(best)
+    plt.plot(distance)
+    plt.xlabel('epoch')
+    plt.ylabel('distance')
+    plt.title('Distance')
+    plt.savefig(f'{path}\Rastrigin\{filename}_distances.png')
+    plt.close(fig)
