@@ -1,4 +1,5 @@
 import numpy as np
+from functions import reducer_weight
 
 class ParticleOptimization:
     def __init__(self, particles:int=20, bounds:list= None, hyper_parameters:list=[0.1, 0.1, 0.8], function:str=None, max_iter:int=200) -> None:
@@ -12,8 +13,12 @@ class ParticleOptimization:
 
     def __create_vector__(self) -> list:
         points = []
-        for i in range(len(self.bounds)):
-            points.append([np.random.uniform(self.bounds[i][0], self.bounds[i][1]) for _ in range(self.size)])
+        if function != reducer_weight:
+            for i in range(len(self.bounds)):
+                points.append([np.random.uniform(self.bounds[i][0], self.bounds[i][1]) for _ in range(self.size)])
+        else:
+            for i in range(len(self.bounds)):
+                points.append([np.random.uniform(self.bounds[i][0], self.bounds[i][1]) if j != 2 else int(np.random.uniform(self.bounds[i][0], self.bounds[i][1])) for j in range(self.size)])
         return np.array(points)
 
     def process_particles(self) -> None:

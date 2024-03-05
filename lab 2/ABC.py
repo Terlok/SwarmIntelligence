@@ -1,4 +1,5 @@
 import numpy as np
+from functions import reducer_weight
 
 class ABC:
     def __init__(self, function, bounds, colony_size=30, max_iter=200):
@@ -21,8 +22,12 @@ class ABC:
 
     def __initializeFoodSources__(self):
         points = []
-        for i in range(len(self.bounds)):
-            points.append([np.random.uniform(self.bounds[i][0], self.bounds[i][1]) for _ in range(int(self.colony_size/2))])
+        if self.function != reducer_weight:
+            for i in range(len(self.bounds)):
+                points.append([np.random.uniform(self.bounds[i][0], self.bounds[i][1]) for _ in range(int(self.colony_size/2))])
+        else:
+            for i in range(len(self.bounds)):
+                points.append([np.random.uniform(self.bounds[i][0], self.bounds[i][1]) if j != 2 else int(np.random.uniform(self.bounds[i][0], self.bounds[i][1])) for j in range(int(self.size/2))])
         return np.array(points)
 
     def calculateFitnesses(self):
