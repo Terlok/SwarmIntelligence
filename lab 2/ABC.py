@@ -27,7 +27,7 @@ class ABC:
                 points.append([np.random.uniform(self.bounds[i][0], self.bounds[i][1]) for _ in range(int(self.colony_size/2))])
         else:
             for i in range(len(self.bounds)):
-                points.append([np.random.uniform(self.bounds[i][0], self.bounds[i][1]) if j != 2 else int(np.random.uniform(self.bounds[i][0], self.bounds[i][1])) for j in range(int(self.size/2))])
+                points.append([np.random.uniform(self.bounds[i][0], self.bounds[i][1]) if j != 2 else int(np.random.uniform(self.bounds[i][0], self.bounds[i][1])) for j in range(int(self.colony_size/2))])
         return np.array(points)
 
     def calculateFitnesses(self):

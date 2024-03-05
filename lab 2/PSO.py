@@ -13,7 +13,7 @@ class ParticleOptimization:
 
     def __create_vector__(self) -> list:
         points = []
-        if function != reducer_weight:
+        if self.function != reducer_weight:
             for i in range(len(self.bounds)):
                 points.append([np.random.uniform(self.bounds[i][0], self.bounds[i][1]) for _ in range(self.size)])
         else:
