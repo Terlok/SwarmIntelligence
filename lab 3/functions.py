@@ -19,12 +19,3 @@ def mishras_bird(X):
     func_values[condition] = 10000
     return func_values
 
-def rosenbrock1(X):
-    x = np.array(X[0])
-    y = np.array(X[1])
-    condition_1 = ( (x - 1)**3 - y + 1 >= 0 )
-    condition_2 = ( x + y - 2 >= 0 )
-
-    func_values = np.array((1-x)**2 + 100*(y-x**2)**2)
-    func_values[np.logical_and(condition_1, condition_2)] = 10000
-    return func_values
