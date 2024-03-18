@@ -33,7 +33,7 @@ class Animation:
         fig.colorbar(img, ax=ax)
         
         ax.plot([x_min], [y_min], marker='x', markersize=5, color="white")
-        p_plot = ax.scatter(self.values['pop'][0], self.values['pop'][1], marker='o', color='blue', alpha=0.5)
+        p_plot = ax.scatter(self.values['pop'][0], self.values['pop'][1], marker='o', alpha=0.5, color='green')
 
         def animate(i):
             title = 'Iteration {:02d}'.format(i)

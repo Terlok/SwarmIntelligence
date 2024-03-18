@@ -46,7 +46,7 @@ class cso:
         combined = list(zip(*self.cuckoos))
         for i in range(len(combined)):
             combined[i] += self.__levyFlight__() * combined[i] * self.stepSize
-        self.cuckoos = list(map(list, zip(*combined)))
+        self.cuckoos = np.array(list(map(list, zip(*combined))))
             
     def execute(self):
         for _ in range(self.max_iter):

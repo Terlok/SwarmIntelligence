@@ -18,4 +18,3 @@ def mishras_bird(X):
     func_values = np.array(func_values) 
     func_values[condition] = 10000
     return func_values
-
