@@ -12,6 +12,7 @@ def create_folders():
     Path(f'{path}\FitnessTrend').mkdir(parents=True, exist_ok=True)
     Path(f'{path}\Distances').mkdir(parents=True, exist_ok=True)
     Path(f'{path}\Animation').mkdir(parents=True, exist_ok=True)
+    Path(f'{path}\ShootingMethod').mkdir(parents=True, exist_ok=True)
 
 class Animation:
     def __init__(self, filename:str, bounds:list, function:str, values:dict) -> None:
