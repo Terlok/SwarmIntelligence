@@ -63,13 +63,3 @@ class cso:
                     self.__layingEggs__(random_index, 0)
 
             self.__newGen__()
-            
-
-from functions import *
-
-if __name__ == '__main__':
-    #test = cso(mishras_bird, pop_size=150, max_iter=500, bounds=[[-10, 0], [-6.5, 0]], nests_count=200, pa=0.75, stepSize=0.01)
-    test = cso(rastrigin, pop_size=100, bounds=[[-5.12, 5.12]]*20, nests_count=150, pa=0.75, max_iter=500, stepSize=0.5)
-    
-    test.execute()
-    print(min(test.values['fitness'][-1]))
