@@ -1,6 +1,6 @@
 import numpy as np
 import random as rnd
-from math import gamma, pow
+from math import gamma
 
 class cso:
     def __init__(self, function, pop_size, bounds, max_iter=200, pa=0.25, stepSize=0.01, nests_count=50):
@@ -73,9 +73,3 @@ if __name__ == '__main__':
     
     test.execute()
     print(min(test.values['fitness'][-1]))
-
-
-
-
-
-
