@@ -19,7 +19,7 @@ def create_folders():
 
 
 class Visualizer:
-    def __init__(self, algo, data, values, labels, file_name, max_iter) -> None:
+    def __init__(self, algo, data, values, labels, file_name, max_iter=None) -> None:
         self.algo = algo
         self.data = data
         self.values = values
@@ -78,7 +78,7 @@ class Visualizer:
             return ax
         
         if len(self.values['points']) <= 50:
-            anim = FuncAnimation(fig, animate, frames=range(self.max_iter), interval=200, blit=False, repeat=False)
+            anim = FuncAnimation(fig, animate, frames=range(len(self.values['points'])), interval=200, blit=False, repeat=False)
         else:
             anim = FuncAnimation(fig, animate, frames=range(0, len(self.values['points']), int(len(self.values['points'])/self.max_iter)), interval=200, blit=False, repeat=False)
         
