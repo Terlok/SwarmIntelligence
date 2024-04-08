@@ -13,14 +13,14 @@ def circle_point(radius, num_points):
 def random_points(x1, y1, x2, y2, point_count):
     return [(rnd.uniform(x1, y1), rnd.uniform(x2, y2)) for _ in range(point_count)]
 
-def read_tsp_file(file_path):
+def read_tsp_file(file_name):
     node_coords = []
-    with open(file_path, 'r') as file:
+    with open(file_name, 'r') as file:
         for line in file:
-            if line.strip() == "NODE_COORD_SECTION":
+            if line.strip() == 'NODE_COORD_SECTION':
                 break
         for line in file:
-            if line.strip() == "EOF":
+            if line.strip() == 'EOF':
                 break
             parts = line.strip().split()
             node_coords.append((float(parts[1]), float(parts[2])))
