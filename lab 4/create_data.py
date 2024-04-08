@@ -10,5 +10,5 @@ def circle_point(radius, num_points):
         points.append((x, y))
     return points
 
-def random_points(x1, x2, y1, y2, pop_size):
-    return [(rnd.uniform(x1, y1), rnd.uniform(x2, y2)) for _ in range(pop_size)]
+def random_points(x1, x2, y1, y2, point_count):
+    return [(rnd.uniform(x1, y1), rnd.uniform(x2, y2)) for _ in range(point_count)]
