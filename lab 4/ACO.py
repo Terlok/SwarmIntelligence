@@ -51,7 +51,7 @@ class ACO:
             for j in range(i + 1, self.len_data):
                 self.edges[i][j] = self.edges[j][i] = Edge(i, j, math.sqrt(pow(self.data[i][0] - self.data[j][0], 2.0) + pow(self.data[i][1] - self.data[j][1], 2.0)), initial_pheromone)
         self.ants = [Ant(alpha, beta, self.len_data, self.edges) for _ in range(self.colony_size)]
-        self.values = {'points': [], 'best_path': []}
+        self.values = {'points': [], 'best_path': [], 'distance': []}
         self.global_best_path = None
         self.global_best_distance = float('inf')
 
@@ -83,3 +83,4 @@ class ACO:
                         self.edges[i][j].pheromone = min_pheromone
             self.values['points'].append(([self.data[i][0] for i in self.global_best_path], [self.data[i][1] for i in self.global_best_path]))
             self.values['best_path'].append(self.global_best_path)
+            self.values['distance'].append(self.global_best_distance)
