@@ -25,7 +25,7 @@ class ParticleSwarmOptimization:
 
         for _ in range(self.max_iter):
             for j in range(self.num_particles):
-                val = self.func(self.x, *particles[j])
+                val = np.mean((self.func(self.x, *particles[j]) - self.y) ** 2)
                 if val < best_swarm_val:
                     best_swarm_val = val
                     best_swarm_pos = particles[j].copy()
