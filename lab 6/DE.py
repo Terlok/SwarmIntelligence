@@ -1,19 +1,18 @@
 import numpy as np
+from functions import *
 
 class DifferentialEvolution:
-    def __init__(self, bounds, x, y, pop_size=50, mutation=0.8, crossover=0.7, max_iter=1000, tol=1e-6):
+    def __init__(self, func, bounds, data, pop_size=50, mutation=0.8, crossover=0.7, max_iter=1000, tol=1e-6):
+        self.func = func
         self.bounds = bounds
-        self.x = x
-        self.y = y
+        self.x = np.array(data[0])
+        self.y = np.array(data[1])
         self.pop_size = pop_size
         self.mutation = mutation
         self.crossover = crossover
         self.max_iter = max_iter
         self.tol = tol
-
-    def func(self, x, b1, b2, b3):
-        return (b1 / b2) * np.exp(-0.5 * ((x-b3)/b2)**2)
-        #return b1 * (1 - np.exp(-b2 * x))
+        self.param = {'fit': []}
 
     def optimize(self):
         num_params = len(self.bounds)
@@ -25,7 +24,7 @@ class DifferentialEvolution:
         fitness = np.asarray([np.mean((self.func(self.x, *ind) - self.y) ** 2) for ind in pop_denorm])
         best_idx = np.argmin(fitness)
         best_params = pop_denorm[best_idx]
-        for i in range(self.max_iter):
+        for _ in range(self.max_iter):
             for j in range(self.pop_size):
                 idxs = [idx for idx in range(self.pop_size) if idx != j]
                 a, b, c = pop[np.random.choice(idxs, 3, replace=False)]
@@ -42,6 +41,7 @@ class DifferentialEvolution:
                     if f < fitness[best_idx]:
                         best_idx = j
                         best_params = trial_denorm
+            self.param['fit'].append(fitness.copy())
             if np.std(fitness) < self.tol:
                 break
         best_fitness = np.mean((self.func(self.x, *best_params) - self.y) ** 2)
