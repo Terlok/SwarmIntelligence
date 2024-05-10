@@ -15,8 +15,7 @@ class DifferentialEvolution:
         self.param = {'fit': []}
 
     def optimize(self):
-        num_params = len(self.bounds)
-        pop = np.random.rand(self.pop_size, num_params)
+        pop = np.random.rand(self.pop_size, len(self.bounds))
         min_b, max_b = np.asarray(self.bounds).T
         diff = np.fabs(min_b - max_b)
         pop_denorm = min_b + pop * diff
@@ -29,9 +28,9 @@ class DifferentialEvolution:
                 idxs = [idx for idx in range(self.pop_size) if idx != j]
                 a, b, c = pop[np.random.choice(idxs, 3, replace=False)]
                 mutant = np.clip(a + self.mutation * (b - c), 0, 1)
-                cross_points = np.random.rand(num_params) < self.crossover
+                cross_points = np.random.rand(len(self.bounds)) < self.crossover
                 if not np.any(cross_points):
-                    cross_points[np.random.randint(0, num_params)] = True
+                    cross_points[np.random.randint(0, len(self.bounds))] = True
                 trial = np.where(cross_points, mutant, pop[j])
                 trial_denorm = min_b + trial * diff
                 f = np.mean((self.func(self.x, *trial_denorm) - self.y) ** 2)
