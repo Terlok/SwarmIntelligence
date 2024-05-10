@@ -14,8 +14,8 @@ def create_folders():
 class Visualizer:
     def __init__(self, algorithm, data, file_name, max_iter=None) -> None:
         self.alg = algorithm
-        self.data = data
         self.filename = file_name
+        self.data = data
         self.max_iter = max_iter
 
     def distance(self, ):
