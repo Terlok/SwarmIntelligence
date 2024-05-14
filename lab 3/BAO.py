@@ -1,9 +1,6 @@
 import numpy as np
 import random as rnd
 
-import numpy as np
-import random as rnd
-
 class bao:
     def __init__(self, function, pop_size, bounds, max_iter=200, A=0.5, r=0.5, Qmin=0.0, Qmax=1.0):
         self.function = function
